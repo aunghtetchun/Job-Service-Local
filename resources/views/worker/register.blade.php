@@ -7,7 +7,7 @@
 @section('content')
     <div class="containter">
         <div class="row justify-content-center ">
-            <div class="col-md-6 mt-3">
+            <div class="col-md-8 mt-3">
                 <div class="card border">
                     <div class="card-header bg-success py-3 text-light text-center h5 font-weight-bolder">
                         အလုပ်သမားလျှောက်လွှာဖောင်</div>
@@ -251,6 +251,8 @@
                     $('#custom-location').removeClass('d-none');
                     $('#location').empty().append(
                         '<option selected  value="new">အသစ်ထည့်မည်</option>');
+                    $(".loading").LoadingOverlay("hide", true);
+
                 } else if (cityId) {
                     $('#custom-city').addClass('d-none');
                     $.ajax({
@@ -273,9 +275,9 @@
                             $("#location").append(
                                 '<option value="new">အသစ်ထည့်မည်</option>');
                         }
+                        $(".loading").LoadingOverlay("hide", true);
                     });
                 }
-                $(".loading").LoadingOverlay("hide", true);
                 // else {
                 //     $('#location').empty().append(
                 //         '<option selected disabled value="">မြို့နယ်ရွေးပါ</option>');
@@ -291,6 +293,8 @@
                     $('#custom-job').removeClass('d-none');
                     $('#job').empty().append(
                         '<option selected value="new">အသစ်ထည့်မည်</option>');
+                    $(".loading").LoadingOverlay("hide", true);
+
                 } else if (workId) {
                     $('#custom-work').addClass('d-none');
                     $.ajax({
@@ -313,13 +317,13 @@
                             $("#job").append(
                                 '<option value="new">အသစ်ထည့်မည်</option>');
                         }
+                        $(".loading").LoadingOverlay("hide", true);
                     });
                 }
                 // else {
                 //     $('#job').empty().append(
                 //         '<option selected disabled value="">အလုပ်အမျိုးအစားရွေးပါ</option>');
                 // }
-                $(".loading").LoadingOverlay("hide", true);
             });
             $('#job').on('change', function() {
                 if ($(this).val() === 'new') {

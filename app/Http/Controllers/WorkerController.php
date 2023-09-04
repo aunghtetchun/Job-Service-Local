@@ -70,8 +70,8 @@ class WorkerController extends Controller
             'role' => 'worker',
         ]);
         $user->save();
-
-        return redirect()->route("login");
+        return view('successful');
+        // return redirect()->route("login");
     }
     public function postList()
     {
