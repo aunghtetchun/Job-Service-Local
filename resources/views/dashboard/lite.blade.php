@@ -22,13 +22,14 @@
     @yield('head')
 </head>
 
-<body>
+<body class="loading">
 
     <div class="min-vh-100 d-flex justify-content-between align-items-center">
         @yield('content')
     </div>
     <script src="{{ asset('dashboard/js/jquery.js') }}"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js
+    "></script>
     <script src="{{ asset('dashboard/vendor/select_2/dist/js/select2.min.js') }}"></script>
 
     @yield('foot')

@@ -44,14 +44,30 @@
                                         </td>
                                         <td>
                                             <div class="">
-                                                <span class="badge badge-secondary p-2 mr-1">{{ $wp->getCity->name }}</span>
-                                                <span class="badge badge-success p-2 mr-1">{{ $wp->getLocation->name }}</span>
+                                                @if (is_numeric($wp->city))
+                                                    <span class="badge badge-secondary p-2 mr-1">{{ $wp->getCity->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->city }}</span>
+                                                @endif
+                                                @if (is_numeric($wp->location))
+                                                    <span class="badge badge-success p-2 mr-1">{{ $wp->getLocation->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->location }}</span>
+                                                @endif
                                             </div>
                                         </td>
                                         <td>
                                             <div class="">
-                                                <span class="badge badge-primary p-2 mr-1">{{ $wp->getWork->name }}</span>
-                                                <span class="badge badge-warning p-2 mr-1">{{ $wp->getJob->name }}</span>
+                                                @if (is_numeric($wp->work))
+                                                    <span class="badge badge-secondary p-2 mr-1">{{ $wp->getWork->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->work }}</span>
+                                                @endif
+                                                @if (is_numeric($wp->job))
+                                                    <span class="badge badge-success p-2 mr-1">{{ $wp->getJob->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->job }}</span>
+                                                @endif
                                             </div>
                                         </td>
                                         <td>
@@ -79,10 +95,10 @@
                                                 Ban <i class="fas fa-user-lock"></i>
                                             </a>
                                             <a onClick="return confirm('Are you sure you want to ban?')"
-                                            href="{{ route('user.banWorker', $wp->id) }}"
-                                            class="btn ml-1 btn-outline-success btn-sm">
-                                            Change <i class="fas fa-user-lock"></i>
-                                        </a>
+                                                href="{{ route('user.banWorker', $wp->id) }}"
+                                                class="btn ml-1 btn-outline-success btn-sm">
+                                                Change <i class="fas fa-user-lock"></i>
+                                            </a>
                                         </td>
                                         <td>{{ $wp->created_at->diffForHumans() }}</td>
                                     </tr>
@@ -117,21 +133,39 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach (App\User::where('role','worker')->where('count',1)->onlyTrashed()->get() as $wp)
+                                @foreach (App\User::where('role', 'worker')->where('count', 1)->onlyTrashed()->get() as $wp)
                                     <tr>
                                         <td>{{ $wp->name }}
 
                                         </td>
                                         <td>
                                             <div class="">
-                                                <span class="badge badge-secondary p-2 mr-1">{{ $wp->getCity->name }}</span>
-                                                <span class="badge badge-success p-2 mr-1">{{ $wp->getLocation->name }}</span>
+                                                @if (is_numeric($wp->city))
+                                                    <span class="badge badge-secondary p-2 mr-1">{{ $wp->getCity->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->city }}</span>
+                                                @endif
+                                                @if (is_numeric($wp->location))
+                                                    <span class="badge badge-success p-2 mr-1">{{ $wp->getLocation->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->location }}</span>
+                                                @endif
                                             </div>
+
+
                                         </td>
                                         <td>
                                             <div class="">
-                                                <span class="badge badge-primary p-2 mr-1">{{ $wp->getWork->name }}</span>
-                                                <span class="badge badge-warning p-2 mr-1">{{ $wp->getJob->name }}</span>
+                                                @if (is_numeric($wp->work))
+                                                    <span class="badge badge-secondary p-2 mr-1">{{ $wp->getWork->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->work }}</span>
+                                                @endif
+                                                @if (is_numeric($wp->job))
+                                                    <span class="badge badge-success p-2 mr-1">{{ $wp->getJob->name }}</span>
+                                                @else
+                                                    <span class="badge badge-danger p-2 mr-1">{{ $wp->job }}</span>
+                                                @endif
                                             </div>
                                         </td>
                                         <td>

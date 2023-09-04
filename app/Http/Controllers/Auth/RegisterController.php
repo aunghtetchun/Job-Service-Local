@@ -62,13 +62,14 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'city' => ['required', 'integer'],
-            'location' => ['required', 'integer'],
-            'work' => [ 'integer'],
-            'job' => [ 'integer'],
+            'city' => ['required'],
+            'location' => ['required'],
+            'work' => [ 'required'],
+            'job' => [ 'required'],
             'nrc' => ['required', 'string','unique:users'],
             'address' => ['required', 'string'],
             'bio' => [ 'string','max:2000'],
+            'count' => [ 'required'],
         ]);
     }
 
@@ -107,7 +108,8 @@ class RegisterController extends Controller
             'nrc' => $data['nrc'],
             'address' => $data['address'],
             'bio' => $data['bio'],
-            'type'=> 'worker',
+            'count' => $data['count'],
+            'role'=> 'worker',
         ]);
     }
 }

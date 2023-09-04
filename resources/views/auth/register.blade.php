@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-center ">
             <div class="col-md-6 mt-3">
                 <div class="card border">
                     <div class="card-header bg-success py-3 text-light text-center h5 font-weight-bolder">
@@ -70,13 +70,27 @@
                                 </div>
                             </div>
                             <div class="form-group ">
+                                <label for="count" class=" font-weight-bold ">အလုပ်သမားအရေအတွက် </label>
+
+                                <div class="">
+                                    <input id="count" type="number"
+                                        class="form-control @error('count') is-invalid @enderror" name="count"
+                                        value="1" required>
+                                    @error('count')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+                            <div class="form-group ">
                                 <label for="city" class="font-weight-bold">မြို့</label>
                                 <select name="city" id="city" class="form-control select2">
                                     <option selected disabled>မြို့ရွေးပါ</option>
                                     @foreach (\App\Information::where('type', 'city')->get() as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
                                     @endforeach
-                                    <option value="new">မြို့အသစ်ထည့်မည်</option>
+                                    <option value="new">အသစ်ထည့်မည်</option>
                                 </select>
                                 <input id="custom-city" type="text" class="form-control mt-2 d-none" name="custom-city"
                                     placeholder="မြို့အသစ်နာမည်ရေးပါ">
@@ -110,7 +124,7 @@
                                     @foreach (\App\Information::where('type', 'work')->get() as $c)
                                         <option value="{{ $c->id }}">{{ $c->name }}</option>
                                     @endforeach
-                                    <option value="new">အလုပ်နာမည်အသစ်ထည့်မည်</option>
+                                    <option value="new">အသစ်ထည့်မည်</option>
                                 </select>
                                 <input id="custom-work" type="text" class="form-control mt-2 d-none" name="custom-work"
                                     placeholder="အလုပ်အမျိုးအစားအသစ်နာမည်ရေးပါ">
@@ -128,6 +142,7 @@
                                     {{-- @foreach (\App\SubCategory::where('type', 'job')->get() as $c)
                                     <option value="{{ $c->id }}">{{ $c->name }}</option>
                                 @endforeach --}}
+
                                 </select>
                                 <input id="custom-job" type="text" class="form-control mt-2 d-none" name="custom-job"
                                     placeholder="အလုပ်အကိုင်အသစ်နာမည်ရေးပါ">
@@ -181,7 +196,7 @@
 
                             <div class="form-group  mb-0">
                                 <div class=" font-weight-bold">
-                                    <button type="submit" class="btn btn-primary">
+                                    <button type="submit" onclick="showLoading()" class="btn btn-primary">
                                         အတည်ပြုမည်
                                     </button>
                                 </div>
@@ -195,14 +210,34 @@
 @endsection
 @section('foot')
     <script>
+        function showLoading() {
+            // Show the loading overlay
+            $(".loading").LoadingOverlay("show", {
+                background: "rgba(105,214,255,0.5)"
+            });
+
+            // Set a timeout to hide the loading overlay after 3 seconds
+            setTimeout(function() {
+                hideLoading(); // Call a function to hide the loading overlay
+            }, 500);
+        }
+
+        function hideLoading() {
+            // Hide the loading overlay
+            $(".loading").LoadingOverlay("hide", true);
+        }
         $(document).ready(function() {
+
             $('#city').on('change', function() {
+                $(".loading").LoadingOverlay("show", {
+                    background: "rgba(105,214,255,0.5)"
+                });
                 var cityId = $(this).val();
                 if ($(this).val() === 'new') {
                     $('#custom-city').removeClass('d-none');
                     $('#custom-location').removeClass('d-none');
                     $('#location').empty().append(
-                        '<option selected disabled value="">မြို့နယ်ရွေးပါ</option>');
+                        '<option selected  value="new">အသစ်ထည့်မည်</option>');
                 } else if (cityId) {
                     $('#custom-city').addClass('d-none');
                     $.ajax({
@@ -223,22 +258,26 @@
                                 );
                             });
                             $("#location").append(
-                                '<option value="new">မြို့နယ်အသစ်ထည့်မည်</option>');
+                                '<option value="new">အသစ်ထည့်မည်</option>');
                         }
                     });
                 }
+                $(".loading").LoadingOverlay("hide", true);
                 // else {
                 //     $('#location').empty().append(
                 //         '<option selected disabled value="">မြို့နယ်ရွေးပါ</option>');
                 // }
             });
             $('#work').on('change', function() {
+                $(".loading").LoadingOverlay("show", {
+                    background: "rgba(105,214,255,0.5)"
+                });
                 var workId = $(this).val();
                 if ($(this).val() === 'new') {
                     $('#custom-work').removeClass('d-none');
                     $('#custom-job').removeClass('d-none');
                     $('#job').empty().append(
-                        '<option selected disabled value="">အလုပ်အမျိုးအစားရွေးပါ</option>');
+                        '<option selected value="new">အသစ်ထည့်မည်</option>');
                 } else if (workId) {
                     $('#custom-work').addClass('d-none');
                     $.ajax({
@@ -258,8 +297,8 @@
                                     '</option>'
                                 );
                             });
-                            $("#.job").append(
-                                '<option value="new">အလုပ်နာမည်အသစ်ထည့်မည်</option>');
+                            $("#job").append(
+                                '<option value="new">အသစ်ထည့်မည်</option>');
                         }
                     });
                 }
@@ -267,6 +306,7 @@
                 //     $('#job').empty().append(
                 //         '<option selected disabled value="">အလုပ်အမျိုးအစားရွေးပါ</option>');
                 // }
+                $(".loading").LoadingOverlay("hide", true);
             });
             $('#job').on('change', function() {
                 if ($(this).val() === 'new') {
