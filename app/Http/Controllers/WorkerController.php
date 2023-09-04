@@ -8,11 +8,18 @@ use Illuminate\Http\Request;
 
 class WorkerController extends Controller
 {
+
+    public function register(){
+        return view('worker.register');
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function store(Request $request){
+        return $request;
+    }
     public function postList()
     {
         return view('worker.post-list');

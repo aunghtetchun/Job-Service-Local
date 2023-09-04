@@ -14,6 +14,9 @@ Route::get('/contact', function () {
 
 Auth::routes();
 
+Route::get('/worker/register','WorkerController@register')->name('worker.register');
+Route::post('/worker/register','WorkerController@store')->name('worker.store');
+
 
 //admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
