@@ -274,8 +274,9 @@
                             });
                             $("#location").append(
                                 '<option value="new">အသစ်ထည့်မည်</option>');
+                            $(".loading").LoadingOverlay("hide", true);
+
                         }
-                        $(".loading").LoadingOverlay("hide", true);
                     });
                 }
                 // else {
@@ -316,8 +317,9 @@
                             });
                             $("#job").append(
                                 '<option value="new">အသစ်ထည့်မည်</option>');
+                            $(".loading").LoadingOverlay("hide", true);
+
                         }
-                        $(".loading").LoadingOverlay("hide", true);
                     });
                 }
                 // else {
