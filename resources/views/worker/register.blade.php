@@ -5,7 +5,6 @@
 @endsection
 
 @section('content')
-    <div class="row justify-content-center ">
         <div class="col-md-6 mt-3">
             <div class="card border">
                 <div class="card-header bg-success py-3 text-light text-center h5 font-weight-bolder">
@@ -215,5 +214,4 @@
                 </div>
             </div>
         </div>
-    </div>
 @endsection
