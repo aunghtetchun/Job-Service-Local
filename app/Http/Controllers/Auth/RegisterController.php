@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'nrc' => ['required', 'string','unique:users'],
             'address' => ['required', 'string'],
             'bio' => [ 'string','max:2000'],
-            'count' => [ 'required'],
+            'count' => ['required'],
         ]);
     }
 

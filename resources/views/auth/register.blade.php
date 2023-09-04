@@ -11,7 +11,15 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('register') }}">
                             @csrf
-
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <div class="form-group ">
                                 <label for="name" class="font-weight-bold">နာမည်</label>
 
@@ -73,7 +81,7 @@
                                 <label for="count" class=" font-weight-bold ">အလုပ်သမားအရေအတွက် </label>
 
                                 <div class="">
-                                    <input id="count" type="number"
+                                    <input id="count" type="text"
                                         class="form-control @error('count') is-invalid @enderror" name="count"
                                         value="1" required>
                                     @error('count')
@@ -126,8 +134,8 @@
                                     @endforeach
                                     <option value="new">အသစ်ထည့်မည်</option>
                                 </select>
-                                <input id="custom-work" type="text" class="form-control mt-2 d-none" name="custom-work"
-                                    placeholder="အလုပ်အမျိုးအစားအသစ်နာမည်ရေးပါ">
+                                <input id="custom-work" type="text" class="form-control mt-2 d-none"
+                                    name="custom-work" placeholder="အလုပ်အမျိုးအစားအသစ်နာမည်ရေးပါ">
                                 @error('work')
                                     <small class="invalid-feedback font-weight-bold" role="alert">
                                         {{ $message }}
