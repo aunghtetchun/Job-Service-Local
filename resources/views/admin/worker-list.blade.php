@@ -124,9 +124,6 @@
                                         </td>
                                         <td>
                                             <div class="">
-                                                @if (preg_match('/^[0-9]+$/', $wp->city)
-
-                                                @endif
                                                 <span class="badge badge-secondary p-2 mr-1">{{ $wp->getCity->name }}</span>
                                                 <span class="badge badge-success p-2 mr-1">{{ $wp->getLocation->name }}</span>
                                             </div>
