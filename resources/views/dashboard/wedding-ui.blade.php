@@ -26,7 +26,7 @@
 
 <body>
 
-    <div class="container-fluid" style="background:  #f7efe9">
+    <div class="container-fluid loading" style="background:  #f7efe9">
         <div class="row justify-content-center" style="min-height: 100vh">
             {{-- <div class="col-12 p-0 position-sticky bg-primary" style=" top: 0; z-index: 16">
             <div class="container ">

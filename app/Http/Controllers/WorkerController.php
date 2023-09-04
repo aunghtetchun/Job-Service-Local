@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Photo;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class WorkerController extends Controller
 {
 
-    public function register(){
+    public function register()
+    {
         return view('worker.register');
     }
     /**
@@ -17,8 +20,58 @@ class WorkerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request){
-        return $request;
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'city' => ['required', 'numeric'],
+            'location' => ['required', 'numeric'],
+            'work' => ['required', 'numeric'],
+            'job' => ['required', 'numeric'],
+            'nrc' => ['required', 'string', 'unique:users'],
+            'address' => ['required', 'string'],
+            'bio' => ['string', 'max:2000'],
+            'count' => ['required'],
+        ]);
+        $city = $request->city;
+        if ($city == 'new') {
+            $city = $request->input('custom-city');
+        }
+
+        $location = $request->location;
+        if ($location == 'new') {
+            $location = $request->input('custom-location');
+        }
+
+        $work = $request->work;
+        if ($work == 'new') {
+            $work = $request->input('custom-work');
+        }
+
+        $job = $request->job;
+        if ($job == 'new') {
+            $job = $request->input('custom-job');
+        }
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'city' => $city,
+            'location' => $location,
+            'work' => $work,
+            'job' => $job,
+            'nrc' => $request->nrc,
+            'address' => $request->address,
+            'bio' => $request->bio,
+            'count' => $request->count,
+            'role' => 'worker',
+        ]);
+        $user->save();
+
+        return redirect()->route("login");
     }
     public function postList()
     {
@@ -51,7 +104,7 @@ class WorkerController extends Controller
      */
     public function storePost(Request $request)
     {
-        $user=auth()->user();
+        $user = auth()->user();
         $request->validate([
             "title" => "required|max:100",
             "description" => "required|max:500",
@@ -63,8 +116,8 @@ class WorkerController extends Controller
         $post->worker_id = $user->id;
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->city=$user->city;
-        $post->location=$user->location;
+        $post->city = $user->city;
+        $post->location = $user->location;
         $post->save();
         if ($request->hasFile('images')) {
             $dir = "public/post";
