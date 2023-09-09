@@ -28,6 +28,7 @@
 
     <div class="container-fluid loading" style="background:  #f7efe9">
         <div class="row justify-content-center" style="min-height: 100vh">
+
             {{-- <div class="col-12 p-0 position-sticky bg-primary" style=" top: 0; z-index: 16">
             <div class="container ">
                 <div class="row">
@@ -61,7 +62,9 @@
                 </div>
             </div>
         </div> --}}
-            @yield('content')
+
+                @yield('content')
+
             {{-- <div class="container">
             <div class="row">
                 <div class="col-12 pt-5 mt-5 d-flex flex-wrap justify-content-between align-items-center">
@@ -105,7 +108,7 @@
     <script src="{{ asset('wedding/vendor/data_table/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('wedding/vendor/venobox/venobox.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/gasparesganga-jquery-loading-overlay@2.1.7/dist/loadingoverlay.min.js
-        "></script>
+            "></script>
     <script src="{{ asset('dashboard/vendor/select_2/dist/js/select2.min.js') }}"></script>
 
     <script src="{{ asset('wedding/js/app.js') }}"></script>

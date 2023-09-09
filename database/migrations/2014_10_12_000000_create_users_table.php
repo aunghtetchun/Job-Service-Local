@@ -25,13 +25,9 @@ class CreateUsersTable extends Migration
             $table->string('job')->nullable();
             $table->string('city')->nullable();
             $table->string('location')->nullable();
-            $table->string('custom_city')->nullable();
-            $table->string('custom_location')->nullable();
-            $table->string('custom_work')->nullable();
-            $table->string('custom_job')->nullable();
             $table->integer('rating')->default(1);
             $table->string('address')->nullable();
-            $table->string('nrc')->nullable();
+            $table->string('group_name')->nullable();
             $table->longText('bio')->nullable();
             $table->string('lifetime')->nullable();
             $table->integer('count')->default(1);

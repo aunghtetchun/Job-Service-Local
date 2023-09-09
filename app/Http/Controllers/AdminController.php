@@ -14,6 +14,10 @@ class AdminController extends Controller
         $workers=User::where('role','worker')->where('count','=',1)->get();
         return view('admin.worker-list',compact('workers'));
     }
+    public function showWorker(Request $request){
+        $worker=User::where('role','worker')->where('id',$request->id)->first();
+        return view('admin.show-worker',compact('worker'));
+    }
     public function groupWorkerList()
     {
         $workers=User::where('role','worker')->where('count','>',1)->get();

@@ -31,7 +31,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">City & Location</th>
                                     <th scope="col">Work Type</th>
-                                    <th scope="col">Post Count</th>
+                                    {{-- <th scope="col">Post Count</th> --}}
                                     <th scope="col">Actions</th>
                                     <th scope="col">Created_at</th>
                                 </tr>
@@ -70,11 +70,11 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <span class="badge p-2 ml-auto  badge-info ">
                                                 {{ \App\Post::where('worker_id', $wp->id)->count() }} posts
                                             </span>
-                                        </td>
+                                        </td> --}}
 
                                         {{-- <td>{{ $wp->card }}</td> --}}
                                         <td class="control-group d-flex justify-content-start"
@@ -89,6 +89,10 @@
                                                 class="btn ml-1 btn-outline-success btn-sm">
                                                 <i class="feather-eye"></i>
                                             </a> --}}
+                                            <a href="{{ route('user.showWorker', $wp->id) }}"
+                                                class="btn ml-1 btn-outline-success btn-sm">
+                                               View <i class="feather-eye"></i>
+                                            </a>
                                             <a onClick="return confirm('Are you sure you want to ban?')"
                                                 href="{{ route('user.banWorker', $wp->id) }}"
                                                 class="btn ml-1 btn-outline-danger btn-sm">
@@ -127,7 +131,7 @@
                                     <th scope="col">Name</th>
                                     <th scope="col">City & Location</th>
                                     <th scope="col">Work Type</th>
-                                    <th scope="col">Post Count</th>
+                                    {{-- <th scope="col">Post Count</th> --}}
                                     <th scope="col">Actions</th>
                                     <th scope="col">Created_at</th>
                                 </tr>
@@ -168,11 +172,11 @@
                                                 @endif
                                             </div>
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             <span class="badge p-2 ml-auto  badge-info ">
                                                 {{ \App\Post::where('worker_id', $wp->id)->count() }} posts
                                             </span>
-                                        </td>
+                                        </td> --}}
                                         {{-- <td>{{ $wp->card }}</td> --}}
                                         <td class="control-group d-flex justify-content-start"
                                             style="vertical-align: middle; text-align: center">

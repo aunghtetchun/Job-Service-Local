@@ -25,6 +25,7 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('/information', 'InformationController');
     Route::resource('/recommend', 'RecommendController');
     Route::get('/worker-list', 'AdminController@workerList')->name('user.workerList');
+    Route::get('/show-worker/{id}', 'AdminController@showWorker')->name('user.showWorker');
     Route::get('/group-worker-list', 'AdminController@groupWorkerList')->name('user.groupWorkerList');
     Route::get('/user-list', 'AdminController@userList')->name('user.userList');
     Route::get('/ban-worker', 'AdminController@banWorker')->name('user.banWorker');
