@@ -65,6 +65,8 @@
 @endsection
 @section("foot")
     <script>
+         $('.table').dataTable();
+        $('.table').destroy();
         $(".table").dataTable({
             "order": [[0, "desc" ]]
         });

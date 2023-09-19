@@ -150,7 +150,8 @@
                 reader.readAsDataURL(file);
             }
         }
-
+        $('.table').dataTable();
+        $('.table').destroy();
         $(".table").dataTable({
             "order": [
                 [0, "desc"]

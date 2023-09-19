@@ -20,28 +20,24 @@
                 @endslot
                 @slot('body')
                     <div>
-                        <table class="table table-bordered table-hover mb-0">
+                        <table class="table table-bordered table-responsive table-hover mb-0">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Username</th>
-                                <th scope="col">Recommend</th>
                                 <th scope="col">Controls</th>
-                                <th scope="col">Created_at</th>
                             </tr>
                             </thead>
                             <tbody>
                             @foreach(App\Recommend::where('worker_id',auth()->user()->id)->latest()->get() as $p)
                                 <tr>
-                                    <th scope="row">{{ $p->id }}</th>
                                     <td>{{ $p->getUser->name }}</td>
-                                    <td>{{\App\Custom::toShort(strip_tags(html_entity_decode($p->remarks)), 80) }}</td>
+                                    <!-- <td>{{\App\Custom::toShort(strip_tags(html_entity_decode($p->remarks)), 80) }}</td> -->
                                     <td class="control-group d-flex" style="vertical-align: middle; text-align: center">
                                         <a href="" class="btn ml-2  btn-outline-success btn-sm">
                                             <i class="feather-eye"></i>
                                         </a>
                                     </td>
-                                    <td>{{ $p->created_at->diffForHumans() }}</td>
+                                    <!-- <td>{{ $p->created_at->diffForHumans() }}</td> -->
                                 </tr>
                             @endforeach
                             </tbody>
@@ -54,6 +50,8 @@
 @endsection
 @section("foot")
     <script>
+         $('.table').dataTable();
+        $('.table').destroy();
         $(".table").dataTable({
             "order": [[0, "desc" ]]
         });

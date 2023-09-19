@@ -67,8 +67,7 @@
                                                     Copy Right @ {{ \App\Custom::$info['short_name'] }} {{ date('Y') }}
                                                 </div>
                                                 <div>
-                                                    Developed By <a class="text-primary font-weight-bold"
-                                                        href="https://www.facebook.com/accesscode2022">Access Code</a>
+                                                    Developed By AHC</a>
                                                 </div>
                                             </div>
                                         </div>

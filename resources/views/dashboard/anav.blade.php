@@ -54,7 +54,6 @@
                 @slot('count')
                     {{ \App\Post::where('worker_id', Auth::user()->id)->count() }}
                 @endslot
-                {{-- \App\Book::count() --}}
             @endcomponent
 
             @component('component.nav-spacer')
@@ -77,33 +76,7 @@
                 @slot('count')
                     {{ \App\Recommend::where('worker_id', Auth::user()->id)->count() }}
                 @endslot
-                {{-- \App\Book::count() --}}
             @endcomponent
-            @component('component.nav-spacer')
-            @endcomponent
-
-            @component('component.nav-title')
-                Comment Management
-            @endcomponent
-
-
-            @component('component.nav-item-count')
-                @slot('icon')
-                    <i class="feather-list"></i>
-                @endslot
-                @slot('name')
-                    Comment List
-                @endslot
-                @slot('link')
-                    {{ route('worker.commentList') }}
-                @endslot
-                @slot('count')
-                    {{ \App\Comment::where('worker_id', Auth::user()->id)->count() }}
-                @endslot
-                {{-- \App\Book::count() --}}
-            @endcomponent
-
-
 
             @component('component.nav-spacer')
             @endcomponent

@@ -108,16 +108,12 @@ class WorkerController extends Controller
         $request->validate([
             "title" => "required|max:100",
             "description" => "required|max:500",
-            // "city" => "required|numeric",
-            // "location" => "required|numeric",
             "images.*" => 'required|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
         $post = new Post();
         $post->worker_id = $user->id;
         $post->title = $request->title;
         $post->description = $request->description;
-        $post->city = $user->city;
-        $post->location = $user->location;
         $post->save();
         if ($request->hasFile('images')) {
             $dir = "public/post";
@@ -126,8 +122,7 @@ class WorkerController extends Controller
                 $image->storeAs($dir, $newName);
                 $photo = new Photo();
                 $photo->name = $newName;
-                $aa = Post::get()->last();
-                $photo->wedding_package_id = $aa->id;
+                $photo->post_id = $post->id;
                 $photo->save();
             }
         }

@@ -2,21 +2,13 @@
 
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/show-blog', function () {
-    return view('show-blog');
-});
-Route::get('/contact', function () {
-    return view('contact');
+    return view('home');
 });
 
 Auth::routes();
 
 Route::get('/worker/register','WorkerController@register')->name('worker.register');
 Route::post('/worker/register','WorkerController@store')->name('worker.store');
-
 
 //admin
 Route::middleware(['auth', 'isAdmin'])->group(function () {
@@ -51,7 +43,6 @@ Route::middleware(['auth', 'isWorker'])->prefix('worker')->name('worker.')->grou
     Route::get('/{post}/edit', 'WorkerController@editPost')->name('editPost');
     Route::put('/{post}', 'WorkerController@updatePost')->name('updatePost');
     Route::get('/{post}', 'WorkerController@showPost')->name('showPost');
-    Route::get('/comment/comment-list', 'WorkerController@commentList')->name('commentList');
     Route::get('/recommend/recommend-list', 'WorkerController@recommendList')->name('recommendList');
 });
 Route::get('/worker-home', 'HomeController@worker')->name('worker.home')->middleware('isWorker');
@@ -59,6 +50,7 @@ Route::get('/worker-home', 'HomeController@worker')->name('worker.home')->middle
 //client
 Route::middleware(['auth'])->prefix('client')->name('client.')->group(function () {
     Route::post('/store-recommend', 'ClientController@storeRecommend')->name('storeRecommend');
+    Route::post('/comment','ClientController@commentPost')->name('commentPost');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -29,7 +29,7 @@
     <div class="container-fluid loading" style="background:  #f7efe9">
         <div class="row justify-content-center" style="min-height: 100vh">
 
-            {{-- <div class="col-12 p-0 position-sticky bg-primary" style=" top: 0; z-index: 16">
+             <div class="col-12 p-0 position-sticky bg-primary" style=" top: 0; z-index: 16">
             <div class="container ">
                 <div class="row">
                     <div class="col-12 p-0 ">
@@ -44,15 +44,27 @@
                                     <li class="nav-item px-3 ">
                                         <a class="nav-link" href="{{ asset('/') }}"><i class="fas fa-home fa-fw"></i> Home <span class="sr-only">(current)</span></a>
                                     </li>
+                                    @if(!auth()->check()) 
                                     <li class="nav-item px-3 ">
-                                        <a class="nav-link " href=""><i class="fas fa-layer-group fa-fw"></i> Events</a>
+                                        <a class="nav-link " href="{{route('login')}}"><i class="fas fa-sign-in-alt"></i> Login </a>
                                     </li>
                                     <li class="nav-item px-3 ">
-                                        <a class="nav-link" href=""><i class="fab fa-blogger"></i> Blog</a>
+                                        <a class="nav-link" href="{{route('register')}}"><i class="fas fa-user-plus"></i> Register</a>
                                     </li>
+                                    @endif
+                                    @if(auth()->check()) 
                                     <li class="nav-item px-3 ">
-                                        <a class="nav-link" href=""><i class="fas fa-star fa-fw"></i> Recommend</a>
+                                        <a class="nav-link" href=""><i class="fas fa-user-tie"></i> Profile</a>
                                     </li>
+                                    @endif
+                                    <li class="nav-item px-3 ">
+                                        <a class="nav-link" href=""><i class="fas fa-star fa-fw"></i> About</a>
+                                    </li>
+                                    @if(auth()->check()) 
+                                    <li class="nav-item px-3 ">
+                                        <a class="nav-link " href="{{route('logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                                    </li>
+                                    @endif
 
 
                                 </ul>
@@ -61,7 +73,7 @@
                     </div>
                 </div>
             </div>
-        </div> --}}
+        </div> 
 
                 @yield('content')
 

@@ -32,4 +32,18 @@ class ClientController extends Controller
         return redirect()->back();
     }
 
+    public function likePost(Request $request){
+        $request->validate([
+            "post_id" => "required|numeric",
+            "comment" => "required|max:500",
+        ]);
+        $post=Post::find($request->post_id);
+        $comment = new Comment();
+        $comment->user_id = auth()->user()->id;
+        $comment->worker_id= $post->worker_id;
+        $comment->comment = $request->comment;
+        $comment->save();
+        return response()->json(['message'=>"success"],200);
+    }
+
 }

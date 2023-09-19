@@ -22,13 +22,12 @@
                 @endslot
                 @slot('body')
                     <div>
-                        <table class="table table-bordered table-hover mb-0">
+                        <table class="table table-bordered table-responsive table-hover mb-0">
                             <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Title</th>
-                                <th scope="col">Description</th>
-                                <th scope="col">Comment</th>
+                                <!-- <th scope="col">Description</th> -->
+                                <!-- <th scope="col">Comment</th> -->
                                 <th scope="col">Controls</th>
                                 <th scope="col">Created_at</th>
                             </tr>
@@ -36,10 +35,9 @@
                             <tbody>
                             @foreach(App\Post::where('worker_id',auth()->user()->id)->latest()->get() as $p)
                                 <tr>
-                                    <th scope="row">{{ $p->id }}</th>
                                     <td>{{ $p->title }}</td>
-                                    <td>{{\App\Custom::toShort(strip_tags(html_entity_decode($p->description)),40) }}</td>
-                                    <td>{{ App\Comment::where('post_id',$p->id)->count() }} comments</td>
+                                    <!-- <td>{{\App\Custom::toShort(strip_tags(html_entity_decode($p->description)),40) }}</td>
+                                    <td>{{ App\Comment::where('post_id',$p->id)->count() }} comments</td> -->
                                     <td class="control-group d-flex" style="vertical-align: middle; text-align: center">
                                         <a href="{{ route('worker.showPost',$p->id) }}" class="btn mr-2 btn-outline-success btn-sm">
                                             <i class="feather-eye"></i>
@@ -63,6 +61,8 @@
 @endsection
 @section("foot")
     <script>
+        $('.table').dataTable();
+        $('.table').destroy();
         $(".table").dataTable({
             "order": [[0, "desc" ]]
         });

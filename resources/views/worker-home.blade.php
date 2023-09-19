@@ -1,4 +1,4 @@
- {{-- @extends('dashboard.author')
+@extends('dashboard.author')
 @section('title') Dashboard @endsection
 
 @section('content')
@@ -21,4 +21,3 @@
     </div>
 
 @endsection
- --}}
